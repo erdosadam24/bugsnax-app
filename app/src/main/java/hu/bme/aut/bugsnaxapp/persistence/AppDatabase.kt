@@ -1,6 +1,6 @@
 package hu.bme.aut.bugsnaxapp.persistence
 
 // TODO: Annotations
-class AppDatabase {
-
+abstract class AppDatabase {
+    abstract fun bugsnakDao(): BugsnakDao
 }
