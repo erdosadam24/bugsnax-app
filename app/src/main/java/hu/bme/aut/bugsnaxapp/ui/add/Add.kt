@@ -1,3 +1,3 @@
 package hu.bme.aut.bugsnaxapp.ui.add
 
-// TODO: Compose Methods
+// TODO: Show Add New Bugsnak Form

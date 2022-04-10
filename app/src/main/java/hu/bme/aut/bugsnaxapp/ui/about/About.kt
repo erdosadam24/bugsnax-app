@@ -1,3 +1,3 @@
 package hu.bme.aut.bugsnaxapp.ui.about
 
-// TODO: Compose Methods
+// TODO: Show Information About The App
