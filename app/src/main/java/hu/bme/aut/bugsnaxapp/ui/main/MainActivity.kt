@@ -1,4 +1,9 @@
 package hu.bme.aut.bugsnaxapp.ui.main
 
-class MainActivity {
+import androidx.activity.ComponentActivity
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
+    // TODO: Activity Logic
 }

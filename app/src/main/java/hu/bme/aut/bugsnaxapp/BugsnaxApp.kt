@@ -1,4 +1,7 @@
 package hu.bme.aut.bugsnaxapp
 
-class BugsnaxApp {
-}
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
+
+@HiltAndroidApp
+class BugsnaxApp : Application()
