@@ -27,14 +27,3 @@ jobs:
         
       - name: Build Debug APK
         run: ./gradlew assembleDebug
-        
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}_tag
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
