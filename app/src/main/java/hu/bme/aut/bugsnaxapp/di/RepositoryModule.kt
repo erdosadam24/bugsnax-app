@@ -14,7 +14,6 @@ import hu.bme.aut.bugsnaxapp.ui.main.MainRepository
 object RepositoryModule {
 
     @Provides
-    @ViewModelScoped
     fun provideMainRepository(
         bugsnaxApi: BugsnaxApi,
         bugsnakDao: BugsnakDao

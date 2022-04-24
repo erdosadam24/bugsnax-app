@@ -1,6 +1,7 @@
 package hu.bme.aut.bugsnaxapp.di
 
 import android.app.Application
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,22 +17,19 @@ object PersistenceModule {
     @Provides
     @Singleton
     fun provideAppDatabase(application: Application): AppDatabase {
-        return DB()
+        return Room
+            .databaseBuilder(
+                application,
+                AppDatabase::class.java,
+                "BugsnaxApp.db"
+            )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
     @Singleton
     fun provideBugsnakDao(appDatabase: AppDatabase): BugsnakDao {
-        return DAO()
-    }
-}
-
-// For Testing
-class DAO: BugsnakDao { }
-
-// For Testing
-class DB: AppDatabase() {
-    override fun bugsnakDao(): BugsnakDao {
-        return DAO()
+        return appDatabase.bugsnakDao()
     }
 }
