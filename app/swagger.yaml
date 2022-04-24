@@ -1,0 +1,248 @@
+swagger: "2.0"
+info:
+  description: "Busgnax API description"
+  version: "1.0.0"
+  title: "Bugsnax Server API"
+  contact:
+    name: "By Sam Pratt"
+    url: "https://github.com/samuel-pratt/bugsnax-api"
+host: "www.bugsnaxapi.com"
+basePath: "/api"
+tags:
+- name: "bugsnax"
+  description: "Information about Bugsnax."
+- name: "locations"
+  description: "Information about the Locations available in the game."
+- name: "grumpuses"
+  description: "Information about Grumpuses."
+
+schemes:
+- "https"
+paths:
+  /bugsnax:
+    get:
+      tags:
+      - "bugsnax"
+      summary: "Returns all bugsnax"
+      operationId: "GetBugsnax"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              bugsnax:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Bugsnak"
+  /bugsnax/{id}:
+    get:
+      tags:
+      - "bugsnax"
+      summary: "Find a bugsnak by its id"
+      operationId: "GetBugsnakById"
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          type: "integer",
+          required: true,
+          description: "The id of the bugsnak"
+        }
+      ]
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Bugsnak"
+  /locations:
+    get:
+      tags:
+      - "locations"
+      summary: "Returns all locations"
+      operationId: "GetLocations"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              locations:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Location"
+  /locations/{id}:
+    get:
+      tags:
+      - "locations"
+      summary: "Find a location by its id"
+      operationId: "GetLocationById"
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          type: "integer",
+          required: true,
+          description: "The id of the location"
+        }
+      ]
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Location"
+  /grumpuses:
+    get:
+      tags:
+      - "grumpuses"
+      summary: "Returns all grumpuses"
+      operationId: "GetGrumpuses"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+            properties:
+              grumpuses:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Grumpus"
+  /grumpuses/{id}:
+    get:
+      tags:
+      - "grumpuses"
+      summary: "Find a grumpus by its id"
+      operationId: "GetGrumpusById"
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          type: "integer",
+          required: true,
+          description: "The id of the grumpus"
+        }
+      ]
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Grumpus"
+
+definitions:
+  Bugsnak:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        description: "The id of the bugsnak"
+      location:
+        type: "object"
+        properties:
+          id:
+            type: "integer"
+            description: "The id of the location"
+          name:
+            type: "string"
+            description: "The name of the location"
+      name:
+        type: "string"
+        description: "The name of the Bugsnak"
+  Location:
+    type: "object"
+    properties:
+      bugsnax:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+              description: "The id of the bugsnak"
+            name:
+              type: "string"
+              description: "The name of the bugsnak"
+      id:
+        type: "integer"
+        description: "The id of the location"
+      inhabitants:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+              description: "The id of the grumpus"
+            name:
+              type: "string"
+              description: "The name of the grumpus"
+      name:
+        type: "string"
+        description: "The name of the location"
+  Grumpus:
+    type: "object"
+    properties:
+      fears:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+              description: "The id of the grumpus"
+            name:
+              type: "string"
+              description: "The name of the grumpus"
+      hates:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+              description: "The id of the grumpus"
+            name:
+              type: "string"
+              description: "The name of the grumpus"
+      id:
+        type: "integer"
+        description: "The id of the grumpus"
+      locations:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+              description: "The id of the location"
+            name:
+              type: "string"
+              description: "The name of the location"
+      loves:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            id:
+              type: "integer"
+              description: "The id of the grumpus"
+            name:
+              type: "string"
+              description: "The name of the grumpus"
+      name:
+        type: "string"
+        description: "The name of the grumpus"
+      occupation:
+        type: "string"
+        description: "The current occupation of the grumpus"

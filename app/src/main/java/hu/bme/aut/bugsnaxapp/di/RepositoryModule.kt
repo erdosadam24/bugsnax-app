@@ -5,7 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
-import hu.bme.aut.bugsnaxapp.network.BugsnaxService
+import hu.bme.aut.bugsnaxapp.client.apis.BugsnaxApi
 import hu.bme.aut.bugsnaxapp.persistence.BugsnakDao
 import hu.bme.aut.bugsnaxapp.ui.main.MainRepository
 
@@ -14,10 +14,11 @@ import hu.bme.aut.bugsnaxapp.ui.main.MainRepository
 object RepositoryModule {
 
     @Provides
+    @ViewModelScoped
     fun provideMainRepository(
-        bugsnaxService: BugsnaxService,
+        bugsnaxApi: BugsnaxApi,
         bugsnakDao: BugsnakDao
     ) : MainRepository {
-      return MainRepository(bugsnaxService, bugsnakDao)
+      return MainRepository(bugsnaxApi, bugsnakDao)
     }
 }
