@@ -24,6 +24,7 @@ object PersistenceModule {
                 "BugsnaxApp.db"
             )
             .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
             .build()
     }
 

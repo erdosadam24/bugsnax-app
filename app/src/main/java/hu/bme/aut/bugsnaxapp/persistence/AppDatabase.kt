@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import hu.bme.aut.bugsnaxapp.model.Bugsnak
 
-@Database(entities = [Bugsnak::class], version = 1, exportSchema = true)
+@Database(entities = [Bugsnak::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun bugsnakDao(): BugsnakDao
 }
