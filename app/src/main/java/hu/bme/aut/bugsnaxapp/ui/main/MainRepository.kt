@@ -13,9 +13,6 @@ class MainRepository @Inject constructor(
     private val bugsnaxApi: BugsnaxApi,
     private val bugsnakDao: BugsnakDao
 ) {
-    // TODO: Load Bugsnax Data
-
-    @WorkerThread
     fun loadBugsnaxData() {
         bugsnaxApi.getBugsnax().subscribe(
             { v ->
@@ -37,5 +34,7 @@ class MainRepository @Inject constructor(
         )
     }
 
-    // TODO: Delete Bugsnak Data
+    fun deleteBugsnak(id: Long) {
+        bugsnakDao.removeBugsnak(id)
+    }
 }
