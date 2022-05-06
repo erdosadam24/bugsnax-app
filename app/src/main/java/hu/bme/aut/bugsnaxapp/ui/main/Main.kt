@@ -15,7 +15,8 @@ fun BugsnaxMainScreen() {
         NavHost(navController = navController, startDestination = NavScreen.Home.route) {
             composable(NavScreen.Home.route) {
                 MainFragment(
-                    viewModel = hiltViewModel()
+                    viewModel = hiltViewModel(),
+                    addViewModel = hiltViewModel()
                 )
             }
         }

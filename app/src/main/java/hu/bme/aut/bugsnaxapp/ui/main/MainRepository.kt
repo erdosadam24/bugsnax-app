@@ -22,19 +22,20 @@ class MainRepository @Inject constructor(
             bugsnaxApi.getBugsnax().subscribe(
                 { v ->
                     v.bugsnax?.forEach { bugsnak ->
-                        var newId: Long = 0L
                         if (bugsnak.id != null) {
-                            newId = bugsnak.id!!.toLong()
-                        }
-                        converted.add(
-                            Bugsnak(
-                                id = newId,
-                                location = (bugsnak.location?.name ?: ""),
-                                name = (bugsnak.name ?: ""),
-                                userAdded = false
+                            val newId = bugsnak.id!!.toLong()
+
+                            converted.add(
+                                Bugsnak(
+                                    id = newId,
+                                    location = (bugsnak.location?.name ?: ""),
+                                    name = (bugsnak.name ?: ""),
+                                    userAdded = false
+                                )
                             )
-                        )
-                        Log.e("Info", "Bugsnak added: " + bugsnak.name)
+
+                            Log.e("Info", "Bugsnak added: " + bugsnak.name)
+                        }
                     }
                     bugsnakDao.insertBugsnakList(converted)
                 },

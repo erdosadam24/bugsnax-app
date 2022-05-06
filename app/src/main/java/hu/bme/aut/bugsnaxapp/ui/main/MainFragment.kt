@@ -27,10 +27,12 @@ import hu.bme.aut.bugsnaxapp.theme.purple200
 import hu.bme.aut.bugsnaxapp.R
 import hu.bme.aut.bugsnaxapp.ui.about.About
 import hu.bme.aut.bugsnaxapp.ui.add.Add
+import hu.bme.aut.bugsnaxapp.ui.add.AddViewModel
 
 @Composable
 fun MainFragment(
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
+    addViewModel: AddViewModel
 ) {
     val bugsnax: List<Bugsnak> = viewModel.getBugsnax()
     val selectedTab = NavigationTab.getTabFromResource(viewModel.selectedTab.value)
@@ -59,7 +61,6 @@ fun MainFragment(
                             selectedContentColor = LocalContentColor.current,
                             unselectedContentColor = LocalContentColor.current,
                             modifier = Modifier.navigationBarsPadding()
-
                         )
                     }
                 }
@@ -70,7 +71,7 @@ fun MainFragment(
                 when (destination) {
                     NavigationTab.HOME -> BugsnaxList(modifier, bugsnax)
                     NavigationTab.ABOUT -> About()
-                    NavigationTab.ADD -> Add()
+                    NavigationTab.ADD -> Add(addViewModel)
                     else -> BugsnaxList(modifier, bugsnax)
                 }
             }

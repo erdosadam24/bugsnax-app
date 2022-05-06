@@ -7,6 +7,10 @@ import javax.inject.Inject
 class AddRepository @Inject constructor(
     private val bugsnakDao: BugsnakDao
 ) {
+    fun getNextId(): Long {
+        return bugsnakDao.getLastId() + 1
+    }
+
     fun addNewBugsnak(bugsnak: Bugsnak) {
         bugsnakDao.insertBugsnak(bugsnak)
     }
