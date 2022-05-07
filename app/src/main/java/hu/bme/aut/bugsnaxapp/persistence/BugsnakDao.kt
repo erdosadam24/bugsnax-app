@@ -20,6 +20,6 @@ interface BugsnakDao {
     @Query("DELETE FROM Bugsnak WHERE id = :id_")
     fun removeBugsnak(id_: Long)
 
-    @Query("SELECT id  FROM Bugsnak ORDER BY id DESC LIMIT 1")
+    @Query("SELECT id FROM Bugsnak ORDER BY id DESC LIMIT 1")
     fun getLastId(): Long
 }
