@@ -5,16 +5,19 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+import hu.bme.aut.bugsnaxapp.model.Bugsnak
 
 @Composable
 fun Add(
-    viewModel: AddViewModel
+    viewModel: AddViewModel,
+    bugsnax: SnapshotStateList<Bugsnak>
 ) {
     var name by remember { mutableStateOf("") }
     var location by remember { mutableStateOf("") }
@@ -58,7 +61,8 @@ fun Add(
                     if (name.trim() == "" || location.trim() == "") {
                         Toast.makeText(context,"Please fill out the empty fields!",Toast.LENGTH_SHORT).show()
                     } else {
-                        viewModel.createBugsnak(name, location)
+                        val newBugsnak = viewModel.createBugsnak(name, location)
+                        bugsnax.add(newBugsnak)
                         name = ""
                         location = ""
                         Toast.makeText(context,"New Bugsnak added!",Toast.LENGTH_SHORT).show()

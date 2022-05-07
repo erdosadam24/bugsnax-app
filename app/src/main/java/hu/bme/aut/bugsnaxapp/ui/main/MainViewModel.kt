@@ -15,7 +15,6 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     var mainRepository: MainRepository
 ) : ViewModel() {
-    //val bugsnakList = mainRepository.loadBugsnaxData()
 
     private val _selectedTab: MutableState<Int> = mutableStateOf(0)
     val selectedTab: State<Int> get() = _selectedTab
@@ -26,6 +25,10 @@ class MainViewModel @Inject constructor(
 
     fun getBugsnax(): List<Bugsnak> {
        return mainRepository.loadBugsnaxData()
+    }
+
+    fun deleteBugsnak(id: Long) {
+        mainRepository.deleteBugsnak(id)
     }
 
     init {

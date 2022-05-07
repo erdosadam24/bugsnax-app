@@ -10,6 +10,8 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.NoteAdd
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,7 +24,6 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.google.accompanist.insets.navigationBarsHeight
 import com.google.accompanist.insets.navigationBarsPadding
-import hu.bme.aut.bugsnaxapp.model.Bugsnak
 import hu.bme.aut.bugsnaxapp.theme.purple200
 import hu.bme.aut.bugsnaxapp.R
 import hu.bme.aut.bugsnaxapp.ui.about.About
@@ -34,7 +35,7 @@ fun MainFragment(
     viewModel: MainViewModel,
     addViewModel: AddViewModel
 ) {
-    val bugsnax: List<Bugsnak> = viewModel.getBugsnax()
+    val bugsnax = remember { viewModel.getBugsnax().toMutableStateList() }
     val selectedTab = NavigationTab.getTabFromResource(viewModel.selectedTab.value)
     val tabs = NavigationTab.values()
 
@@ -71,7 +72,7 @@ fun MainFragment(
                 when (destination) {
                     NavigationTab.HOME -> BugsnaxList(modifier, bugsnax)
                     NavigationTab.ABOUT -> About()
-                    NavigationTab.ADD -> Add(addViewModel)
+                    NavigationTab.ADD -> Add(addViewModel, bugsnax)
                     else -> BugsnaxList(modifier, bugsnax)
                 }
             }

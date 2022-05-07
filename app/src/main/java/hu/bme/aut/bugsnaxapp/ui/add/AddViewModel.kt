@@ -10,7 +10,9 @@ class AddViewModel @Inject constructor(
     private val addRepository: AddRepository
 ) : ViewModel() {
 
-    fun createBugsnak(name: String, location: String) {
-        addRepository.addNewBugsnak(Bugsnak(addRepository.getNextId(), name, location, true))
+    fun createBugsnak(name: String, location: String): Bugsnak {
+        val newBugsnak = Bugsnak(addRepository.getNextId(), name, location, true)
+        addRepository.addNewBugsnak(newBugsnak)
+        return newBugsnak
     }
 }
