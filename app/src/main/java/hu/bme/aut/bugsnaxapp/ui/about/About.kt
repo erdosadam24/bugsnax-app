@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import hu.bme.aut.bugsnaxapp.R
+import java.lang.RuntimeException
 
 @Preview
 @Composable
@@ -22,7 +24,7 @@ fun About() {
             .fillMaxHeight()
     ) {
         ConstraintLayout() {
-            val (image, title, version, rights) = createRefs()
+            val (image, title, version, rights, crashButton) = createRefs()
 
             Image(
                 painter = painterResource(id = R.drawable.logo),
@@ -68,6 +70,22 @@ fun About() {
                     }
                     .padding(top = 8.dp)
             )
+
+            OutlinedButton(
+                onClick = {
+                    throw RuntimeException("Test Crash")
+                },
+                modifier = Modifier
+                    .constrainAs(crashButton) {
+                        centerHorizontallyTo(parent)
+                        top.linkTo(rights.bottom)
+                    }
+                    .padding(16.dp)
+            ) {
+                Text(
+                    text = "Test Crash"
+                )
+            }
         }
     }
 }

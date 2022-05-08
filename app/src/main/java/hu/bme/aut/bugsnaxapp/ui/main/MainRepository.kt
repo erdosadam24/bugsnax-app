@@ -15,28 +15,23 @@ class MainRepository @Inject constructor(
     fun loadBugsnaxData(): List<Bugsnak> {
         val converted = bugsnakDao.getBugsnakList().toMutableList()
         if (converted.isEmpty()) {
-            bugsnaxApi.getBugsnax().subscribe(
-                { v ->
-                    v.bugsnax?.forEach { bugsnak ->
-                        if (bugsnak.id != null) {
-                            val newId = bugsnak.id!!.toLong()
+            val v = bugsnaxApi.getBugsnax().blockingGet()
+            v.bugsnax?.forEach { bugsnak ->
+                if (bugsnak.id != null) {
+                    val newId = bugsnak.id!!.toLong()
 
-                            converted.add(
-                                Bugsnak(
-                                    id = newId,
-                                    location = (bugsnak.location?.name ?: ""),
-                                    name = (bugsnak.name ?: ""),
-                                    userAdded = false
-                                )
-                            )
+                    converted.add(
+                        Bugsnak(
+                            id = newId,
+                            location = (bugsnak.location?.name ?: ""),
+                            name = (bugsnak.name ?: ""),
+                            userAdded = false
+                        )
+                    )
 
-                            Log.e("Info", "Bugsnak added: " + bugsnak.name)
-                        }
-                    }
-                    bugsnakDao.insertBugsnakList(converted)
-                },
-                { e -> Log.e(null, "ERROR: $e") }
-            )
+                    Log.e("Info", "Bugsnak added: " + bugsnak.name)
+                }
+            }
         }
         return converted
     }

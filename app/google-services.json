@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "494109341534",
+    "project_id": "bugsnaxapp",
+    "storage_bucket": "bugsnaxapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494109341534:android:c9bb0c30122d9fab4181cf",
+        "android_client_info": {
+          "package_name": "hu.bme.aut.bugsnaxapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494109341534-dgugphnnlknvhe3mpgsbnisqp5t1e6j5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQASh-aSWuBGb9MqWs6mX-ggRCaLm0Nbw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494109341534-dgugphnnlknvhe3mpgsbnisqp5t1e6j5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
